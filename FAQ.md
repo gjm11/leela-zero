@@ -5,7 +5,7 @@ Earlier versions of this FAQ list were in both English and Chinese. Unfortunatel
 
 ## What is Leela Zero?
 
-Leela Zero is a program that plays the ancient game of go. It uses [Monte Carlo tree search] (https://en.wikipedia.org/wiki/Monte_Carlo_tree_search), with a neural network (trained on self-play games) guiding the search and providing evaluation at the leaves. The network design, search strategy, and training process are closely modelled on Google's [AlphaGo Zero project](https://deepmind.com/blog/alphago-zero-learning-scratch/).
+Leela Zero is a program that plays the ancient game of go. It uses [Monte Carlo tree search](https://en.wikipedia.org/wiki/Monte_Carlo_tree_search), with a neural network (trained on self-play games) guiding the search and providing evaluation at the leaves. The network design, search strategy, and training process are closely modelled on Google's [AlphaGo Zero project](https://deepmind.com/blog/alphago-zero-learning-scratch/).
 
 Lacking Google's vast computational resources, Leela Zero's self-play games are provided by a large number of volunteers.
 
@@ -33,9 +33,9 @@ Leela Zero is constantly improving, so any very specific answer is liable to be 
 
 In mid-2018, retired professional Hajin Lee 4p ("Haylee") played a series of 8 games ([first game on YouTube](https://www.youtube.com/watch?v=1buJ9y7dwU8); [last game on YouTube](https://www.youtube.com/watch?v=lRXjP9ZbA2Q)) against Leela Zero, at a range of handicaps. In this match, Leela Zero won comfortably in games where it gave a handicap no bigger than 2 stones, and lost badly in games where it gave a handicap of 3 stones. (In these games, white had the usual komi of 7.5 points.)
 
-In mid-2018, a version of Leela Zero using a larger neural network trained from the same self-play games as the "official" Leela Zero networks entered the Tencent World AI Weiqi Competition. As of the writing of this FAQ, only the first stage of this competition has been held; Leela Zero is in second place after Tencent's _Fine Art_. (But this larger network is not yet publicly available, and "official" Leela Zero is definitely weaker.)
+In mid-2018, a version of Leela Zero using a larger neural network trained from the same self-play games as the "official" Leela Zero networks entered the Tencent World AI Weiqi Competition. In the first stage of the contest, Leela Zero took second place after Tencent's _Fine Art_, but it was less successful in the second stage and eventually took fifth place. (This larger network is not yet publicly available, and "official" Leela Zero is definitely weaker.)
 
-Leela Zero is not the strongest publicly available program (as of mid-2018). In particular, Facebook's _ELF OpenGo_ -- another project modelled closely on AlphaGo Zero -- is stronger than any official version of Leela Zero to date, although in the Tencent competition it lost to an unofficial larger-network version of Leela Zero.
+Leela Zero is not the strongest publicly available program (as of mid-2018). In particular, Facebook's _ELF OpenGo_ -- another project modelled closely on AlphaGo Zero -- is stronger than any official version of Leela Zero to date.
 
 ## Why is it weaker than AlphaGo?
 
