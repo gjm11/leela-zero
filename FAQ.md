@@ -33,23 +33,23 @@ Leela Zero is constantly improving, so any very specific answer is liable to be 
 
 In mid-2018, retired professional Hajin Lee 4p ("Haylee") played a series of 8 games ([first game on YouTube](https://www.youtube.com/watch?v=1buJ9y7dwU8); [last game on YouTube](https://www.youtube.com/watch?v=lRXjP9ZbA2Q)) against Leela Zero, at a range of handicaps. In this match, Leela Zero won comfortably in games where it gave a handicap no bigger than 2 stones, and lost badly in games where it gave a handicap of 3 stones. (In these games, white had the usual komi of 7.5 points.)
 
-In mid-2018, a version of Leela Zero using a larger neural network trained from the same self-play games as the "official" Leela Zero networks entered the Tencent World AI Weiqi Competition. In the first stage of the contest, Leela Zero took second place after Tencent's _Fine Art_, but it was less successful in the second stage and eventually took fifth place. (This larger network is not yet publicly available, and "official" Leela Zero is definitely weaker.)
+In mid-2018, a version of Leela Zero using a larger neural network trained from the same self-play games as the "official" Leela Zero networks entered the Tencent World AI Weiqi Competition. In the first stage of the contest, Leela Zero took second place after Tencent's _Fine Art_, but it was less successful in the second stage and eventually took fifth place. "Official" Leela Zero now uses the same larger size of neural network, and continues to grow in strength.
 
-Leela Zero is not the strongest publicly available program (as of mid-2018). In particular, Facebook's _ELF OpenGo_ -- another project modelled closely on AlphaGo Zero -- is stronger than any official version of Leela Zero to date.
+Leela Zero is probably not the strongest publicly available program (as of mid-2018). In particular,the latest version of Facebook's _ELF OpenGo_ -- another project modelled closely on AlphaGo Zero -- is stronger than any official version of Leela Zero to date, at least if the amount of thinking time is held constant across programs.
 
 ## Why is it weaker than AlphaGo?
 
 For three reasons. First, the Leela Zero community's resources are much less than Google's. The strongest versions of AlphaGo have been trained with many more self-play games than Leela Zero has. However, this is probably not the whole story; Google reports that AlphaGo Zero was Google reports that AlphaGo Zero surpassed the version of AlphaGo that beat Lee Sedol after about 5 million self-play games, and Leela Zero was definitely not that strong after playing 5 million games.
 
-Second, Leela Zero uses a smaller neural network than AlphaGo Zero.
+Second, until 2018-09 Leela Zero used a smaller neural network than AlphaGo Zero; as of late 2018, the full-size network is still quite "young" and has more to learn.
 
 Third, Leela Zero runs on normal PC hardware whereas AlphaGo Zero uses special-purpose hardware designed by Google for accelerating neural network computations.
 
-## Why does Leela Zero's neural network use only 15 blocks, when AlphaGo uses 40?
+## Why was Leela Zero's neural network much smaller than AlphaGo's until late 2018?
 
-(Leela Zero may move to larger networks over time, but it is likely to stay well below 40 blocks for a good while.)
+(As of 2018-09-04, Leela Zero uses a 40-block network, though for some time after that the strongest Leela Zero network _at a given amount of thinking time_ was a smaller one.)
 
-Leela Zero is a community project; both for self-play training and for actual use, it needs to run on "ordinary" computing hardware not equipped with Google's TPUs.
+Leela Zero is a community project; both for self-play training and for actual use, it needs to run on "ordinary" computing hardware not equipped with Google's TPUs. (Although recent official LZ networks are 40-block, users with weak hardware may still get better results from smaller networks.)
 
 The early stages of the Leela Zero project used even smaller networks, and were able to make faster progress by doing so. The general strategy has been to advance to larger networks only when learning appears to have stalled, suggesting that the maximum capabilities of the network being used may have been reached.
 
@@ -67,7 +67,7 @@ Any sort of PC (Mac included) will do. Leela Zero, like any program based on a n
 
 Obviously you need Leela Zero itself. On top of that, you will want something that can display a Go board, allow you to play moves by clicking on it, and so forth. For that, any GUI that knows how to use Go-playing engines that speak the "Go Text Protocol" (or GTP for short) will do. One commonly used program is [Sabaki](https://sabaki.yichuanshen.de/).
 
-Another option is [Lizzie](https://github.com/featurecat/lizzie), a program developed specifically to be a user interface for Leela Zero. It can show you what Leela Zero is thinking about, its estimated win probabilities for candidate moves, and so forth. As of mid-2018 its user interface is less polished than Sabaki's, but its LZ-specific features are very useful.
+Another option is [Lizzie](https://github.com/featurecat/lizzie), a program developed specifically to be a user interface for Leela Zero. It can show you what Leela Zero is thinking about, its estimated win probabilities for candidate moves, and so forth. As of late 2018 its user interface is less polished than Sabaki's, but its LZ-specific features are very useful.
 
 ## When I run Sabaki/Lizzie/... for the first time, what's this "auto-tuning" thing that takes so long?
 
@@ -95,7 +95,7 @@ Unless you are a top professional (and perhaps, by the time you are reading this
 
 Unfortunately, if Leela Zero gives you a large handicap, it is likely to play badly (because every position it considers has close-to-zero chance of winning). If you're a dan-level player then you may find that if Leela Zero gives you a large enough handicap for you to have a chance, this makes it play so badly that _it_ doesn't have a chance.
 
-This is a tricky problem, being worked on actively by the Leela Zero community. As of mid-2018, though, it is an unsolved problem.
+This is a tricky problem, being worked on actively by the Leela Zero community. As of late 2018, though, there is no fully satisfactory solution.
 
 (If you are _not_ a dan-level player, though, just take as many stones of handicap as you need. Even with its difficulty playing against a handicap, Leela Zero will probably still be much stronger than you.)
 
