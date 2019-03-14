@@ -63,6 +63,7 @@ public:
     bool active() const;
     int get_move() const;
     int get_visits() const;
+	float get_weighted_visits() const;
     float get_policy() const;
     void set_policy(float policy);
     float get_eval(int tomove) const;
@@ -70,7 +71,7 @@ public:
     float get_net_eval(int tomove) const;
     void virtual_loss();
     void virtual_loss_undo();
-    void update(float eval);
+    void update(float eval, bool wtm);
 
     // Defined in UCTNodeRoot.cpp, only to be called on m_root in UCTSearch
     void randomize_first_proportionally();
@@ -107,6 +108,7 @@ private:
     // UCT
     std::atomic<std::int16_t> m_virtual_loss{0};
     std::atomic<int> m_visits{0};
+	std::atomic<float> m_weighted_visits{0.0f};
     // UCT eval
     float m_policy;
     // Original net eval for this node (not children).

@@ -118,7 +118,7 @@ bool UCTNode::create_children(Network & network,
     // we make extra calls to final_score() at some nodes. But this is done
     // only at nodes where the other player just passed despite having a
     // really bad position; the cost should not be large.
-    if (state.get_passes() == 0
+    if (state.get_passes() == 0 // XXX disable this to see whether weighted visits help
         || (to_move == FastBoard::WHITE ? 1.0f - m_net_eval : m_net_eval) < 0.75
         || nodelist.size() < 5
         || cfg_dumbpass
@@ -200,9 +200,15 @@ void UCTNode::virtual_loss_undo() {
     m_virtual_loss -= VIRTUAL_LOSS_COUNT;
 }
 
-void UCTNode::update(float eval) {
+void UCTNode::update(float eval, bool wtm) {
+	// eval is Black's winprob
+	// wtm is true iff leaf where this eval was seen had white to move
+	// opponent's tendency to move to this position will be greater when
+	// wtm and eval is small, or !wtm and eval is large
     m_visits++;
-    accumulate_eval(eval);
+	float weight = wtm ? 0.01f + eval : 1.01f - eval;
+	atomic_add(m_weighted_visits, weight);
+    accumulate_eval(weight*eval);
 }
 
 bool UCTNode::has_children() const {
@@ -229,17 +235,21 @@ void UCTNode::set_policy(float policy) {
 }
 
 int UCTNode::get_visits() const {
-    return m_visits;
+	return m_visits;
+}
+
+float UCTNode::get_weighted_visits() const {
+	return m_weighted_visits;
 }
 
 float UCTNode::get_raw_eval(int tomove, int virtual_loss) const {
-    auto visits = get_visits() + virtual_loss;
-    assert(visits > 0);
+    auto wvisits = get_weighted_visits() + virtual_loss;
+    assert(wvisits > 0);
     auto blackeval = get_blackevals();
     if (tomove == FastBoard::WHITE) {
         blackeval += static_cast<double>(virtual_loss);
     }
-    auto eval = static_cast<float>(blackeval / double(visits));
+    auto eval = static_cast<float>(blackeval / double(wvisits));
     if (tomove == FastBoard::WHITE) {
         eval = 1.0f - eval;
     }

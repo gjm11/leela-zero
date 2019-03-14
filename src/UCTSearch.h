@@ -38,23 +38,25 @@ class SearchResult {
 public:
     SearchResult() = default;
     bool valid() const { return m_valid;  }
+	bool wtm() const { return m_wtm;  }
     float eval() const { return m_eval;  }
-    static SearchResult from_eval(float eval) {
-        return SearchResult(eval);
+    static SearchResult from_eval(float eval, bool wtm) {
+        return SearchResult(eval, wtm);
     }
-    static SearchResult from_score(float board_score) {
+    static SearchResult from_score(float board_score, bool wtm) {
         if (board_score > 0.0f) {
-            return SearchResult(1.0f);
+            return SearchResult(1.0f, wtm);
         } else if (board_score < 0.0f) {
-            return SearchResult(0.0f);
+            return SearchResult(0.0f, wtm);
         } else {
-            return SearchResult(0.5f);
+            return SearchResult(0.5f, wtm);
         }
     }
 private:
-    explicit SearchResult(float eval)
-        : m_valid(true), m_eval(eval) {}
+    explicit SearchResult(float eval, bool wtm)
+        : m_valid(true), m_wtm(wtm), m_eval(eval) {}
     bool m_valid{false};
+	bool m_wtm{false};
     float m_eval{0.0f};
 };
 

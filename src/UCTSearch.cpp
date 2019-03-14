@@ -211,7 +211,7 @@ SearchResult UCTSearch::play_simulation(GameState & currstate,
     if (node->expandable()) {
         if (currstate.get_passes() >= 2) {
             auto score = currstate.final_score();
-            result = SearchResult::from_score(score);
+            result = SearchResult::from_score(score, color==FastBoard::WHITE);
         } else {
             float eval;
             const auto had_children = node->has_children();
@@ -219,7 +219,7 @@ SearchResult UCTSearch::play_simulation(GameState & currstate,
                 node->create_children(m_network, m_nodes, currstate, eval,
                                       get_min_psa_ratio());
             if (!had_children && success) {
-                result = SearchResult::from_eval(eval);
+                result = SearchResult::from_eval(eval, color==FastBoard::WHITE);
             }
         }
     }
@@ -237,7 +237,7 @@ SearchResult UCTSearch::play_simulation(GameState & currstate,
     }
 
     if (result.valid()) {
-        node->update(result.eval());
+        node->update(result.eval(), result.wtm());
     }
     node->virtual_loss_undo();
 
